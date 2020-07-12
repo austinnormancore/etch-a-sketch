@@ -1,11 +1,17 @@
 body {
-	align-items: center;
+	margin:auto; 
+	width: 50%;
+	padding-top: 20px;
 }
 
 .container {
 	width: 432px;
 	display: grid;
-  	
+}
+
+.inputs {
+	width: 432px;
+	text-align: center;
 }
 
 .square {
