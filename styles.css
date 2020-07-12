@@ -1,0 +1,17 @@
+body {
+	align-items: center;
+}
+
+.container {
+	width: 432px;
+	display: grid;
+  	
+}
+
+.square {
+	border: 1px solid black;
+}
+
+.square:hover {
+	border: 1px solid yellow;
+}

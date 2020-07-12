@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>etch-a-sketch</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+	<div class='container'>
+	
+		
+	</div>
+	<p>
+	<div class='inputs'>
+			<input type="number" value='10' id='num'>
+			<input type="button" value="squares per row" id='btn'>
+			<p>
+			Make it colorful<input type="checkbox" value="colors" id='colors'>
+			</p>
+			 <div class='errorMessage'></div>
+	</div>
+
+
+</body>
+<script type="text/javascript">
+	const container = document.querySelector('.container');
+
+	function makeGrid(n){
+		container.innerHTML = '';
+
+		//-2 accounts for border pixels (432 is container width)
+		var size = (432/n) - 2;
+
+		//will append as many 'auto's as are necessary for required columns
+		var columns = '';
+
+		//rows
+		for (var i=0; i<n; i++){
+
+			//columns
+			for (var j=0; j<n; j++){
+				var square = document.createElement("div");
+				square.classList.add('square');
+				
+				square.style.height = size + 'px';
+				square.style.width = size + 'px';
+
+				container.appendChild(square);
+			}
+
+			// adds 'auto' to grid template columns 'n' times	
+			columns += 'auto '	
+		}
+
+		container.setAttribute('style', 'grid-template-columns: '+ columns); 
+		const squares = document.querySelectorAll('.square');
+
+		//adds the background color to the list of inline style attributes
+		squares.forEach((x) => {
+			var prevStyle = x.getAttribute('style');
+			
+
+
+			x.addEventListener('mouseover', () => {
+			x.setAttribute('style', 'background-color: ' + getBGColor() + prevStyle);
+			});
+		});
+	}
+
+	const btn = document.querySelector('#btn');
+	const num = document.querySelector('#num');
+	const color = document.querySelector('#colors');
+
+	function getBGColor(){
+		if (color.checked == true){
+			var letters = '0123456789ABCDEF';
+		    var hex = '#';
+		    for (var i = 0; i < 6; i++ ) {
+		        hex += letters[Math.floor(Math.random() * 16)];
+		    }
+		    return hex + '; ';
+		} else {
+			return 'black;';
+		}
+	}
+
+	btn.onclick = () => makeGrid(num.value);
+	
+	makeGrid(num.value);
+	
+</script>
+
+</html>
